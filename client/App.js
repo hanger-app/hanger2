@@ -1,7 +1,8 @@
 import React from 'react';
+import Landing from './components/landing.jsx';
 
 const App = () => {
-  return <div>Hello World!</div>;
-}
+  return <Landing />;
+};
 
 export default App;
