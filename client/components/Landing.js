@@ -1,26 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 import GoogleButton from 'react-google-button';
+import { LandingStyle } from '../style';
 
-const LandingStyle = styled.div`
-  display: flex;
-  position: relative;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  & .logo {
-    width: 80%;
-    height: 80%;
-  }
-
-  & .subheading {
-    position: absolute;
-    margin-top: 10rem;
-  }
-  & body {
-    background-color: grey;
-  }
-`;
 export default function Landing() {
   return (
     <LandingStyle>
