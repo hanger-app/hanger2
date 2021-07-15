@@ -1,6 +1,6 @@
 import React from 'react';
 import GoogleButton from 'react-google-button';
-import { LandingStyle } from '../style';
+import { LandingStyle } from '../styles/LandingStyle';
 
 export default function Landing() {
   return (
