@@ -2,6 +2,12 @@ const express = require('express');
 
 const app = express();
 
-const PORT = 3000;
+app.get('/', (req, res) => {
+  res.sendStatus(200);
+});
 
-app.listen(PORT, () => console.log(`Server listening on port ${PORT}\n`));
+app.use('*', (req, res) => {
+  res.sendStatus(404);
+});
+
+module.exports = app;
