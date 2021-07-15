@@ -12,8 +12,21 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.use('*', (req, res) => {
+app.use('/*', (req, res) => {
   res.sendStatus(404);
+});
+
+app.use((err, req, res, next) => {
+  const defaultError = {
+    log: 'An unexpected middleware error occurred!',
+    status: 400,
+    message: { error: 'An error occurred!' },
+  };
+
+  const errorObject = { ...defaultError, ...err };
+  console.error(errorObject.log);
+
+  return res.status(errorObject.status).json(errorObject.message);
 });
 
 module.exports = app;
