@@ -7,7 +7,8 @@
     "start": "NODE_ENV=production nodemon server/index.js",
     "build": "NODE_ENV=production webpack",
     "dev": "NODE_ENV=development webpack serve & NODE_ENV=development nodemon server/index.js",
-    "test": "NODE_ENV=production jest"
+    "test:server": "NODE_ENV=production jest --config=./server/__test__/jest.config.js ./server",
+    "test:client": "jest --config=./client/__test__/jest.config.js ./client"
   },
   "repository": {
     "type": "git",
@@ -31,8 +32,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
+    "@babel/plugin-transform-runtime": "^7.14.5",
     "@babel/preset-env": "^7.14.7",
     "@babel/preset-react": "^7.14.5",
+    "@babel/runtime": "^7.14.6",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
