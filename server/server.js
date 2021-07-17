@@ -3,6 +3,8 @@ const path = require('path');
 
 const app = express();
 
+console.log(process.env.TEST);
+
 if (process.env.NODE_ENV === 'production') {
   app.use('/build', express.static(path.resolve(__dirname, '../build')));
 
