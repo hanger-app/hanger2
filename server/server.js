@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use('/*', (req, res, next) => {
   return next({
-    log: `ERROR: Resource '${req.originalUrl}' does not exist`,
+    log: `ERROR: server.js: Resource '${req.originalUrl}' does not exist`,
     status: 404,
     message: { error: 'Resource does not exist.' },
   });
@@ -28,7 +28,7 @@ app.use('/*', (req, res, next) => {
 
 app.use((err, req, res, next) => {
   const defaultError = {
-    log: 'An unexpected middleware error occurred!',
+    log: 'ERROR: server.js: An unexpected middleware error occurred!',
     status: 400,
     message: { error: 'An error occurred!' },
   };
