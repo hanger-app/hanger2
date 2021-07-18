@@ -26,7 +26,7 @@ app.use('/*', (req, res, next) => {
   });
 });
 
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   const defaultError = {
     log: 'An unexpected middleware error occurred!',
     status: 400,
