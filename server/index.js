@@ -1,4 +1,8 @@
-require('dotenv').config();
+const dotenvConfigOutput = require('dotenv').config();
+if (dotenvConfigOutput.error) {
+  throw new Error(`ERROR: index.js: ${dotenvConfigOutput.error}`);
+}
+
 const mongoConnection = require('./database');
 const app = require('./server');
 
