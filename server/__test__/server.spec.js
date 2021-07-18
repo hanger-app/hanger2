@@ -38,13 +38,25 @@ describe('test CRUD functionality', () => {
       .post('/api/users/fizz@buzz.io')
       .send({ firstName: 'test_firstName', lastName: 'test_lastName', zipcode: 12345 })
       .expect('Content-Type', /application\/json/)
-      .expect(200);
+      .expect(200)
+      .expect((res) => {
+        expect(res.body.firstName).toEqual('test_firstName');
+        expect(res.body.lastName).toEqual('test_lastName');
+        expect(res.body.email).toEqual('fizz@buzz.io');
+        expect(res.body.zipcode).toEqual(12345);
+      });
   });
 
   test('GET /api/users/fizz@buzz.io', async () => {
     await request(app)
       .get('/api/users/fizz@buzz.io')
       .expect('Content-Type', /application\/json/)
-      .expect(200);
+      .expect(200)
+      .expect((res) => {
+        expect(res.body.firstName).toEqual('test_firstName');
+        expect(res.body.lastName).toEqual('test_lastName');
+        expect(res.body.email).toEqual('fizz@buzz.io');
+        expect(res.body.zipcode).toEqual(12345);
+      });
   });
 });
