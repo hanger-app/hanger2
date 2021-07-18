@@ -23,9 +23,7 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env', '@babel/preset-react'],
-            plugins: [
-              isDevelopment && require.resolve('react-refresh/babel'),
-            ].filter(Boolean),
+            plugins: [isDevelopment && require.resolve('react-refresh/babel')].filter(Boolean),
           },
         },
       },
@@ -40,7 +38,7 @@ module.exports = {
     contentBase: path.resolve(__dirname, './build'),
     publicPath: '/',
     proxy: {
-      '/api/leaders': 'http://localhost:3000',
+      '/api': 'http://localhost:3000',
     },
     hot: true,
   },
