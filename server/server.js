@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 
+// import routers
 const userRouter = require('./routes/userRouter.js');
 
 const app = express();
@@ -17,8 +18,12 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.use('/*', (req, res) => {
-  res.sendStatus(404);
+app.use('/*', (req, res, next) => {
+  return next({
+    log: `ERROR: Resource '${req.originalUrl}' does not exist`,
+    status: 404,
+    message: { error: 'Resource does not exist.' },
+  });
 });
 
 app.use((err, req, res) => {
