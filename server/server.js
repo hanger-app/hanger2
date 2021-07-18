@@ -1,7 +1,13 @@
 const express = require('express');
 const path = require('path');
 
+const userRouter = require('./routes/userRouter.js');
+
 const app = express();
+
+app.use(express.json());
+
+app.use('/api/users', userRouter);
 
 if (process.env.NODE_ENV === 'production') {
   app.use('/build', express.static(path.resolve(__dirname, '../build')));
@@ -15,7 +21,7 @@ app.use('/*', (req, res) => {
   res.sendStatus(404);
 });
 
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   const defaultError = {
     log: 'An unexpected middleware error occurred!',
     status: 400,
