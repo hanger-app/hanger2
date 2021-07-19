@@ -23,9 +23,7 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env', '@babel/preset-react'],
-            plugins: [
-              isDevelopment && require.resolve('react-refresh/babel'),
-            ].filter(Boolean),
+            plugins: [isDevelopment && require.resolve('react-refresh/babel')].filter(Boolean),
           },
         },
       },
@@ -61,7 +59,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'build-tools',
+      title: 'Hanger',
       template: path.resolve(__dirname, './index.html'),
       minify: false,
     }),
