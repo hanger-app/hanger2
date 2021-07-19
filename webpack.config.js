@@ -59,7 +59,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Hanger2',
+      title: 'Hanger',
       template: path.resolve(__dirname, './index.html'),
       minify: false,
     }),
