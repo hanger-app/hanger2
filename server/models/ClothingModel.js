@@ -8,6 +8,7 @@ const ClothingSchema = new Schema(
     clothingDescription: { type: String, required: true },
     lastWorn: { type: Date },
     recommendForDonation: { type: Boolean, default: false },
+    imageUrl: { type: String, required: true },
   },
   { timestamps: true }
 );
