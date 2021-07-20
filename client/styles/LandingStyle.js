@@ -2,7 +2,10 @@ import styled from 'styled-components';
 
 export const LandingStyle = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  margin: 0 auto;
+  padding: 24px 8px 0 8px;
+  min-height: calc(100vh - 150px);
   width: 100%;
   height: 100%;
   position: absolute;
@@ -10,14 +13,29 @@ export const LandingStyle = styled.div`
   margin: 0;
   object-fit: cover;
   vertical-align: baseline;
+  & img {
+    filter: brightness(50%);
+    width: 100%;
+    height: 100%;
+  }
   & .subheading {
-    position: absolute;
+    max-width: 15vw;
     margin-top: 10rem;
+    color: white;
+    font-size: 32px;
+    font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
-  & body {
-    background-color: grey;
+  & .google {
+    position: absolute;
   }
-  & google {
-    position: relative;
+  & .logBlock {
+    position: absolute;
+    top: 38%;
+    padding-left: 5rem;
+  }
+  & .coverBlock {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
   }
 `;
