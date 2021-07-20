@@ -33,10 +33,10 @@ describe('test CRUD functionality', () => {
     }
   });
 
-  test('POST /api/users/fizz@buzz.io', async () => {
+  test('POST /api/users', async () => {
     await request(app)
-      .post('/api/users/fizz@buzz.io')
-      .send({ firstName: 'test_firstName', lastName: 'test_lastName', zipcode: 12345 })
+      .post('/api/users')
+      .send({ firstName: 'test_firstName', lastName: 'test_lastName', email: 'fizz@buzz.io', zipcode: 12345 })
       .expect('Content-Type', /application\/json/)
       .expect(200)
       .expect((res) => {
