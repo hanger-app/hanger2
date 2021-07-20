@@ -10,7 +10,7 @@ const {
 const sessionController = {};
 
 sessionController.login = (req, res, next) => {
-  return res.resdirect(GOOGLE_OAUTH_URL);
+  return res.redirect(GOOGLE_OAUTH_URL);
 };
 
 sessionController.callback = async (req, res, next) => {
