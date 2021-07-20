@@ -20,17 +20,16 @@ export const LandingStyle = styled.div`
   }
   & .subheading {
     max-width: 15vw;
-    margin-top: 10rem;
     color: white;
     font-size: 32px;
     font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
   & .google {
-    position: absolute;
   }
   & .logBlock {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
     position: absolute;
     top: 38%;
     padding-left: 5rem;
