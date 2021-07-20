@@ -32,6 +32,10 @@ module.exports = {
         exclude: /node_modules/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
+      {
+        test: /\.(png|jpg)$/,
+        use: 'url-loader?limit=8192',
+      },
     ],
   },
   devServer: {
