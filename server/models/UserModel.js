@@ -9,7 +9,7 @@ const UserSchema = new Schema(
     email: { type: String },
     zipcode: { type: Number },
     oauthAccessToken: { type: String },
-    clothes: [{ type: Schema.Types.ObjectId, ref: 'Clothing' }],
+    closet: [{ type: Schema.Types.ObjectId, ref: 'Clothing' }],
   },
   { timestamps: true }
 );
