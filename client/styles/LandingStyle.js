@@ -25,7 +25,8 @@ export const LandingStyle = styled.div`
     font-size: 32px;
     font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
-  & .google {
+  & .google:hover {
+    color: green;
   }
   & .logBlock {
     display: flex;

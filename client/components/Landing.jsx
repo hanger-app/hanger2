@@ -14,9 +14,9 @@ const Landing = () => {
         <div className="logBlock">
           <h1 className="subheading">A new way to clean your closet</h1>
           <div className="google">
-            <a href="/auth/google">
-              <GoogleButton type="light" />
-            </a>
+            {/* <a href="/auth/google"> */}
+            <GoogleButton type="dark" />
+            {/* </a> */}
           </div>
         </div>
         <br />
