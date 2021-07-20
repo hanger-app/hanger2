@@ -11,5 +11,6 @@ export const NavStyle = styled.div`
   z-index: 1010;
   & .logo {
     width: 10rem;
+    padding-left: 4rem;
   }
 `;
