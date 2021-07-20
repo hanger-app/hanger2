@@ -29,6 +29,8 @@ export const LandingStyle = styled.div`
     position: absolute;
   }
   & .logBlock {
+    display: flex;
+    flex-wrap: wrap;
     position: absolute;
     top: 38%;
     padding-left: 5rem;
