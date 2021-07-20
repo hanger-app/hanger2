@@ -2,7 +2,7 @@ import React from 'react';
 import GoogleButton from 'react-google-button';
 import { LandingStyle } from '../styles/LandingStyle';
 //import LandingStyle component
-export default Landing = () => {
+const Landing = () => {
   return (
     <LandingStyle>
       <div className="coverBlock">
@@ -24,3 +24,5 @@ export default Landing = () => {
     </LandingStyle>
   );
 };
+
+export default Landing;
