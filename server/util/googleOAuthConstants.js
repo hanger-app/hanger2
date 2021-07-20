@@ -9,6 +9,8 @@ const {
 
 const GOOGLE_OAUTH_URL = `${GOOGLE_OAUTH_BASE_ENDPOINT}?client_id=${GOOGLE_OAUTH_CLIENT_ID}&scope=${GOOGLE_OAUTH_SCOPE}&redirect_uri=${GOOGLE_OAUTH_CALLBACK}&access_type=offline&response_type=code`;
 
+const GOOGLE_OAUTH_EXCHANGE_URL = `${GOOGLE_OAUTH_BASE_EXCHANGE}?client_id=${GOOGLE_OAUTH_CLIENT_ID}&client_secret=${GOOGLE_OAUTH_CLIENT_SECRET}&redirect_uri=${GOOGLE_OAUTH_CALLBACK}&grant_type=authorization_code`;
+
 module.exports = {
   GOOGLE_OAUTH_CLIENT_ID,
   GOOGLE_OAUTH_CLIENT_SECRET,
@@ -17,4 +19,5 @@ module.exports = {
   GOOGLE_OAUTH_SCOPE,
   GOOGLE_OAUTH_CALLBACK,
   GOOGLE_OAUTH_URL,
+  GOOGLE_OAUTH_EXCHANGE_URL,
 };
