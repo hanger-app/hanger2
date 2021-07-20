@@ -1,0 +1,6 @@
+const { ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET } = process.env;
+
+module.exports = {
+  ACCESS_TOKEN_SECRET,
+  REFRESH_TOKEN_SECRET,
+};
