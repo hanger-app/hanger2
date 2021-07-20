@@ -7,7 +7,7 @@ userRouter.get('/:id', userController.getUser, (req, res) => {
   return res.status(200).json(res.locals.foundUser);
 });
 
-userRouter.post('/:id', userController.createUser, (req, res) => {
+userRouter.post('/', userController.createUser, (req, res) => {
   return res.status(200).json(res.locals.newUser);
 });
 
