@@ -1,14 +1,20 @@
 const express = require('express');
 const path = require('path');
+const cookieParser = require('cookie-parser');
+const helmet = require('helmet');
 
-// import routers
 const userRouter = require('./routes/userRouter.js');
+const sessionRouter = require('./routes/sessionRouter.js');
 
 const app = express();
 
+app.use(helmet());
 app.use(express.json());
+app.use(cookieParser());
 
 app.use('/api/users', userRouter);
+
+app.use('/api/sessions', sessionRouter);
 
 if (process.env.NODE_ENV === 'production') {
   app.use('/build', express.static(path.resolve(__dirname, '../build')));
