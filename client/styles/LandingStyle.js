@@ -13,9 +13,10 @@ export const LandingStyle = styled.div`
   margin: 0;
   object-fit: cover;
   vertical-align: baseline;
+  overflow-x: auto;
   & img {
-    filter: brightness(50%);
-    width: 100%;
+    filter: brightness(40%);
+    width: fit-content;
     height: 100%;
   }
   & .subheading {
@@ -31,12 +32,7 @@ export const LandingStyle = styled.div`
     flex-wrap: wrap;
     flex-direction: column;
     position: absolute;
-    top: 38%;
+    top: 50%;
     padding-left: 5rem;
-  }
-  & .coverBlock {
-    display: inline-block;
-    width: 100%;
-    height: 100%;
   }
 `;

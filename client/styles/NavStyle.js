@@ -13,4 +13,14 @@ export const NavStyle = styled.div`
     width: 10rem;
     padding-left: 4rem;
   }
+  & .navBar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  & #about {
+    margin-right: 2rem;
+  }
 `;
