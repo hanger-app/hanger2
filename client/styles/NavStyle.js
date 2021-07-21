@@ -4,7 +4,7 @@ export const NavStyle = styled.div`
   position: fixed;
   top: 0;
   width: 100%;
-  height: 6vh;
+  height: 8vh;
   min-width: 768px;
   background-color: #fff;
   color: black;

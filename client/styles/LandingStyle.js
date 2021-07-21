@@ -15,7 +15,7 @@ export const LandingStyle = styled.div`
   vertical-align: baseline;
   overflow-x: auto;
   & img {
-    filter: brightness(40%);
+    filter: brightness(50%);
     width: fit-content;
     height: 100%;
   }
