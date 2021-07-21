@@ -26,6 +26,7 @@ app.use('/*', (req, res, next) => {
   });
 });
 
+// eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   const defaultError = {
     log: 'ERROR: server.js: An unexpected middleware error occurred!',
