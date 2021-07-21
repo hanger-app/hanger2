@@ -8,7 +8,7 @@ const UserSchema = new Schema(
     lastName: { type: String, required: true },
     email: { type: String, required: true },
     zipcode: { type: Number, required: true },
-    oauthId: { type: String, required: true },
+    oauthId: { type: Number, required: true },
     closet: [{ type: Schema.Types.ObjectId, ref: 'Clothing' }],
   },
   { timestamps: true }
