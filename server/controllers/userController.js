@@ -29,7 +29,7 @@ userController.createUser = async (req, res, next) => {
     return next({
       log: err.log ?? `ERROR: userController.createUser: ${err}`,
       status: err.status ?? 400,
-      message: err.message ? err.message : { error: 'An error occurred!' },
+      message: err.message ?? { error: 'An error occurred!' },
     });
   }
 };
@@ -63,7 +63,7 @@ userController.getUser = async (req, res, next) => {
     return next({
       log: err.log ?? `ERROR: userController.getUser: ${err}`,
       status: err.status ?? 400,
-      message: err.message ? err.message : { error: 'An error occurred!' },
+      message: err.message ?? { error: 'An error occurred!' },
     });
   }
 };
