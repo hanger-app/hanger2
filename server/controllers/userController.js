@@ -40,7 +40,7 @@ userController.getUser = async (req, res, next) => {
 
     if (!id) {
       throw {
-        log: 'ERROR: userController.createUser: ID was not provided',
+        log: `ERROR: userController.createUser: ${new RangeError('ID was not provided')}`,
         status: 400,
         message: 'Please provide a valid id',
       };
@@ -50,7 +50,7 @@ userController.getUser = async (req, res, next) => {
 
     if (!foundUser) {
       throw {
-        log: 'ERROR: userController.getUser: ID does not exist',
+        log: `ERROR: userController.getUser: ${new RangeError('ID does not exist')}`,
         status: 404,
         message: 'The provided email does not exist.',
       };
