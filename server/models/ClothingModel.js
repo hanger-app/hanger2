@@ -1,18 +1,20 @@
-const mongoose = require('mongoose');
-
-const { Schema } = mongoose;
+const { Schema, model } = require('mongoose');
 
 const ClothingSchema = new Schema(
   {
-    clothingName: { type: String, required: true },
-    clothingDescription: { type: String, required: true },
+    user: { type: Number, ref: 'User', required: true, unique: true },
+    name: { type: String, required: true },
+    description: { type: String, required: true },
     lastWorn: { type: Date, required: true },
     recommendForDonation: { type: Boolean, default: false, required: true },
     imageUrl: { type: String, required: true },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+    autoIndex: process.env.NODE_ENV === 'development',
+  }
 );
 
-const Clothes = mongoose.model('Clothing', ClothingSchema);
+const Clothing = model('Clothing', ClothingSchema);
 
-module.exports = Clothes;
+module.exports = Clothing;
