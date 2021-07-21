@@ -3,6 +3,8 @@ const path = require('path');
 
 const app = express();
 
+app.use('/assets', express.static(path.resolve(__dirname, '../client/assets')));
+
 if (process.env.NODE_ENV === 'production') {
   app.use('/build', express.static(path.resolve(__dirname, '../build')));
 
