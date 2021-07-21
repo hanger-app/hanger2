@@ -126,6 +126,8 @@ sessionController.invalidateRefreshToken = (req, res, next) => {
 sessionController.createUserCookie = (req, res, next) => {
   const user = {
     id: res.locals.userInfo.id,
+    firstName: res.locals.userInfo.given_name,
+    lastName: res.locals.userInfo.family_name,
     email: res.locals.userInfo.email,
     picture: res.locals.userInfo.picture,
     authenticated: true,
