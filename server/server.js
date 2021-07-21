@@ -12,6 +12,8 @@ app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
 
+app.use('/assets', express.static(path.resolve(__dirname, '../client/assets')));
+
 app.use('/api/users', userRouter);
 
 app.use('/api/sessions', sessionRouter);
@@ -32,6 +34,7 @@ app.use('/*', (req, res, next) => {
   });
 });
 
+// eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   const defaultError = {
     log: 'ERROR: server.js: An unexpected middleware error occurred!',

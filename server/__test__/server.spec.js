@@ -33,7 +33,7 @@ describe('test CRUD functionality', () => {
     }
   });
 
-  test('POST /api/users', async () => {
+  xtest('POST /api/users', async () => {
     await request(app)
       .post('/api/users')
       .send({ firstName: 'test_firstName', lastName: 'test_lastName', email: 'fizz@buzz.io', zipcode: 12345 })
@@ -47,7 +47,7 @@ describe('test CRUD functionality', () => {
       });
   });
 
-  test('GET /api/users/fizz@buzz.io', async () => {
+  xtest('GET /api/users/fizz@buzz.io', async () => {
     await request(app)
       .get('/api/users/fizz@buzz.io')
       .expect('Content-Type', /application\/json/)
