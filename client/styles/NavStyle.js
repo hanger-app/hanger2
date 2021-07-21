@@ -1,14 +1,16 @@
 import styled from 'styled-components';
 
 export const NavStyle = styled.div`
+  display: inline-block;
+  height: 15vh;
+  min-height: 14vh;
   position: fixed;
   top: 0;
   width: 100%;
-  height: 8vh;
-  min-width: 768px;
+  min-width: 99vw;
   background-color: #fff;
   color: black;
-  border-bottom: 1px solid #e6e2df;
+  // border-bottom: 1px solid #e6e2df;
   z-index: 1010;
   font-family: sans-serif;
 
