@@ -127,7 +127,7 @@ sessionController.createUserCookie = (req, res, next) => {
   const user = {
     id: res.locals.userInfo.id,
     email: res.locals.userInfo.email,
-    google_picture: res.locals.userInfo.picture,
+    picture: res.locals.userInfo.picture,
     authenticated: true,
   };
 
