@@ -1,7 +1,7 @@
 import React from 'react';
 import GoogleButton from 'react-google-button';
 import { LandingStyle } from '../styles/LandingStyle';
-//import LandingStyle component
+
 const Landing = () => {
   return (
     <LandingStyle>
