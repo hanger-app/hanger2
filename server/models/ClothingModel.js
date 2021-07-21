@@ -6,8 +6,8 @@ const ClothingSchema = new Schema(
   {
     clothingName: { type: String, required: true },
     clothingDescription: { type: String, required: true },
-    lastWorn: { type: Date },
-    recommendForDonation: { type: Boolean, default: false },
+    lastWorn: { type: Date, required: true },
+    recommendForDonation: { type: Boolean, default: false, required: true },
     imageUrl: { type: String, required: true },
   },
   { timestamps: true }

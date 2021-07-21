@@ -6,9 +6,9 @@ const UserSchema = new Schema(
   {
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
-    email: { type: String },
-    zipcode: { type: Number },
-    oauthId: { type: String },
+    email: { type: String, required: true },
+    zipcode: { type: Number, required: true },
+    oauthId: { type: String, required: true },
     closet: [{ type: Schema.Types.ObjectId, ref: 'Clothing' }],
   },
   { timestamps: true }
