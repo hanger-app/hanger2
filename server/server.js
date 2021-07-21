@@ -8,6 +8,8 @@ const app = express();
 
 app.use(express.json());
 
+app.use('/assets', express.static(path.resolve(__dirname, '../client/assets')));
+
 app.use('/api/users', userRouter);
 
 if (process.env.NODE_ENV === 'production') {

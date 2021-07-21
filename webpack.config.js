@@ -39,6 +39,7 @@ module.exports = {
     publicPath: '/',
     proxy: {
       '/api': 'http://localhost:3000',
+      '/assets': 'http://localhost:3000',
     },
     hot: true,
   },
