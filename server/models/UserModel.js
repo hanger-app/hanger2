@@ -8,7 +8,7 @@ const UserSchema = new Schema(
     lastName: { type: String, required: true },
     email: { type: String },
     zipcode: { type: Number },
-    oauthAccessToken: { type: String },
+    oauthId: { type: String },
     closet: [{ type: Schema.Types.ObjectId, ref: 'Clothing' }],
   },
   { timestamps: true }
