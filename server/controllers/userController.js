@@ -16,7 +16,7 @@ userController.createUser = async (req, res, next) => {
       firstName: res.locals.userInfo.given_name,
       lastName: res.locals.userInfo.family_name,
       email: res.locals.userInfo.email,
-      zipcode: 99999,
+      zipcode: '99999',
       oauthId: res.locals.userInfo.id,
     };
 

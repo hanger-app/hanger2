@@ -6,7 +6,7 @@ const UserSchema = new Schema(
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     email: { type: String, required: true, unique: true },
-    zipcode: { type: Number, required: true },
+    zipcode: { type: String, required: true },
     closet: [{ type: Schema.Types.ObjectId, ref: 'Clothing' }],
   },
   {
