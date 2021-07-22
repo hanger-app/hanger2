@@ -38,7 +38,8 @@ module.exports = {
     contentBase: path.resolve(__dirname, './build'),
     publicPath: '/',
     proxy: {
-      '/api/leaders': 'http://localhost:3000',
+      '/api': 'http://localhost:3000',
+      '/assets': 'http://localhost:3000',
     },
     hot: true,
   },
