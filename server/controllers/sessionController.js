@@ -5,6 +5,7 @@ const { ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET } = require('../util/jwtConsta
 
 const sessionController = {};
 
+// refresh tokens should be stored in another mongodb collection or redis cache
 const refreshTokens = new Set();
 
 sessionController.login = (req, res) => {
