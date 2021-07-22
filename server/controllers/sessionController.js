@@ -7,7 +7,7 @@ const sessionController = {};
 
 const refreshTokens = new Set();
 
-sessionController.login = (req, res, next) => {
+sessionController.login = (req, res) => {
   return res.redirect(GOOGLE_OAUTH_URL);
 };
 
@@ -35,11 +35,11 @@ sessionController.callback = async (req, res, next) => {
 };
 
 sessionController.startSession = async (req, res, next) => {
-  const { email } = res.locals.userInfo;
+  const { id, email } = res.locals.userInfo;
 
   try {
-    const accessToken = jwt.sign({ email }, ACCESS_TOKEN_SECRET, { expiresIn: '1d' });
-    const refreshToken = jwt.sign({ email }, REFRESH_TOKEN_SECRET);
+    const accessToken = jwt.sign({ id, email }, ACCESS_TOKEN_SECRET, { expiresIn: '1d' });
+    const refreshToken = jwt.sign({ id, email }, REFRESH_TOKEN_SECRET);
 
     refreshTokens.add(refreshToken);
 
@@ -85,7 +85,7 @@ sessionController.refresh = (req, res, next) => {
         });
       }
 
-      const accessToken = jwt.sign({ email: decoded.email }, ACCESS_TOKEN_SECRET, { expiresIn: '1d' });
+      const accessToken = jwt.sign({ id: decoded.id, email: decoded.email }, ACCESS_TOKEN_SECRET, { expiresIn: '1d' });
       res.cookie('token', accessToken, { maxAge: 7 * 60 * 60 * 24 * 1000, httpOnly: true });
 
       return next();
