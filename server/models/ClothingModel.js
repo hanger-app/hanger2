@@ -11,7 +11,6 @@ const ClothingSchema = new Schema(
   },
   {
     timestamps: true,
-    autoIndex: process.env.NODE_ENV === 'development',
   }
 );
 
