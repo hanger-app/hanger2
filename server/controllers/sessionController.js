@@ -137,4 +137,19 @@ sessionController.createUserCookie = (req, res, next) => {
   return next();
 };
 
+sessionController.verify = (req, res, next) => {
+  const { token } = req.cookies;
+
+  jwt.verify(token, ACCESS_TOKEN_SECRET, (err) => {
+    if (err) {
+      return next({
+        log: `ERROR: sessionController.verify: jwt.verify: ${err}`,
+        status: 403,
+        message: { error: 'Forbidden' },
+      });
+    }
+    return next();
+  });
+};
+
 module.exports = sessionController;
