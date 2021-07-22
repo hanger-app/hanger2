@@ -85,7 +85,6 @@ userController.getUserCloset = async (req, res, next) => {
 
   try {
     const userDoc = await User.findOne({ oauthId: id }, 'closet').populate('closet');
-    console.log(userDoc.closet._id);
 
     if (!userDoc) {
       throw {
