@@ -143,6 +143,13 @@ sessionController.verify = (req, res, next) => {
 
   jwt.verify(token, ACCESS_TOKEN_SECRET, (err) => {
     if (err) {
+      if (err.name === 'TokenExpiredError') {
+        return next({
+          log: `ERROR: sessionController.verify: jwt.verify: ${err.name}`,
+          status: 403,
+          message: { error: 'token expired' },
+        });
+      }
       return next({
         log: `ERROR: sessionController.verify: jwt.verify: ${err}`,
         status: 403,
