@@ -131,7 +131,7 @@ userController.insertClothingIntoUserCloset = async (req, res, next) => {
       description: req.body.description,
       lastWorn: Date.now(),
       recommendForDonation: false,
-      imageUrl: 'foo',
+      imageUrl: 'REPLACE WITH DEFAULT IMAGE URL',
     });
 
     await clothingDoc.save();
