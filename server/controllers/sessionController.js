@@ -87,7 +87,7 @@ sessionController.refresh = (req, res, next) => {
       }
 
       const accessToken = jwt.sign({ id: decoded.id, email: decoded.email }, ACCESS_TOKEN_SECRET, { expiresIn: '1d' });
-      res.cookie('token', accessToken, { maxAge: 7 * 60 * 60 * 24 * 1000, httpOnly: true });
+      res.cookie('token', accessToken, { maxAge: 60 * 60 * 24 * 7 * 1000, httpOnly: true });
 
       return next();
     });
