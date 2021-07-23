@@ -134,7 +134,7 @@ sessionController.createUserCookie = (req, res, next) => {
     authenticated: true,
   };
 
-  res.cookie('user', user);
+  res.cookie('user', JSON.stringify(user));
   return next();
 };
 
