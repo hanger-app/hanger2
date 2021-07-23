@@ -42,10 +42,6 @@ describe('userController', () => {
     res = null;
   });
 
-  afterAll(() => {
-    console.log(userInstance);
-  });
-
   describe('createUser', () => {
     test('skip user creation if user already exists', async () => {
       const UserExistsSpy = jest.spyOn(User, 'exists').mockResolvedValue(new User());
