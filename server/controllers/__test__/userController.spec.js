@@ -2,9 +2,9 @@ const userController = require('../userController.js');
 const User = require('../../models/UserModel.js');
 
 describe('userController', () => {
-  const req = Object.freeze({});
+  const req = {};
 
-  const res = Object.freeze({
+  const res = {
     locals: {
       userInfo: {
         id: '1234567890',
@@ -14,7 +14,7 @@ describe('userController', () => {
         zipcode: '99999',
       },
     },
-  });
+  };
 
   const nextMock = jest.fn((input) => input);
 
@@ -81,4 +81,6 @@ describe('userController', () => {
       expect(nextMock).not.toHaveReturnedWith(undefined);
     });
   });
+
+  describe('getUser', () => {});
 });
