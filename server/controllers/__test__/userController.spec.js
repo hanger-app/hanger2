@@ -3,34 +3,15 @@ const Clothing = require('../../models/ClothingModel.js');
 const User = require('../../models/UserModel.js');
 
 describe('userController', () => {
-  let req = {
-    body: {
-      name: 'mock clothing name',
-      description: 'mock clothing description',
-    },
-    params: {
-      id: '1234567890',
-    },
-  };
+  let req;
 
-  let res = {
-    locals: {
-      userInfo: {
-        id: '1234567890',
-        given_name: 'foo',
-        family_name: 'bar',
-        email: 'fizz@buzz.io',
-        zipcode: '99999',
-      },
-      foundUser: new User(),
-    },
-  };
+  let res;
 
   const nextMock = jest.fn((input) => input);
 
-  afterEach(() => {
-    jest.clearAllMocks();
+  const userInstance = new User();
 
+  beforeEach(() => {
     req = {
       body: {
         name: 'mock clothing name',
@@ -50,11 +31,15 @@ describe('userController', () => {
           email: 'fizz@buzz.io',
           zipcode: '99999',
         },
-        foundUser: {
-          closet: [],
-        },
+        foundUser: userInstance,
       },
     };
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+    req = null;
+    res = null;
   });
 
   describe('createUser', () => {
