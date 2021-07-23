@@ -4,11 +4,11 @@ import Cookies from 'js-cookie';
 const UserContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
 
   const logout = () => () => {
     Cookies.remove('user');
-    setUser({});
+    setUser(null);
   };
 
   useEffect(() => {
