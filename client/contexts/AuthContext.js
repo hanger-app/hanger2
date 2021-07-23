@@ -4,7 +4,12 @@ import Cookies from 'js-cookie';
 const UserContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState({});
+
+  const logout = () => () => {
+    Cookies.remove('user');
+    setUser({});
+  };
 
   useEffect(() => {
     const userCookie = Cookies.getJSON('user');
@@ -12,9 +17,9 @@ const AuthProvider = ({ children }) => {
     if (userCookie) {
       setUser(userCookie);
     }
-  }, []);
+  }, [user]);
 
-  return <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>;
+  return <UserContext.Provider value={{ user, logout }}>{children}</UserContext.Provider>;
 };
 
 const useAuth = () => {
