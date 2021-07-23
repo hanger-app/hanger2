@@ -20,7 +20,9 @@
     "sourceType": "module"
   },
   "plugins": ["import", "jest", "react"],
-  "rules": {},
+  "rules": {
+    "react/prop-types": 0
+  },
   "settings": {
     "react": {
       "version": "detect"
