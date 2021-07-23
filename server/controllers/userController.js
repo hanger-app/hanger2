@@ -54,7 +54,7 @@ userController.getUser = async (req, res, next) => {
       };
     }
 
-    const foundUser = await User.findOne({ oauthId: id });
+    const foundUser = await User.findOne({ oauthId: id }).populate('closet');
 
     if (!foundUser) {
       throw {
