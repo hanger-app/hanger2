@@ -95,7 +95,7 @@ sessionController.refresh = (req, res, next) => {
     return next({
       log: err.log ?? `ERROR: sessionController.refresh: ${err}`,
       status: err.status ?? 400,
-      msg: err.msg ?? { error: 'An error occurred' },
+      msg: err?.msg ?? { error: 'An error occurred' },
     });
   }
 };
@@ -119,7 +119,7 @@ sessionController.invalidateRefreshToken = (req, res, next) => {
     return next({
       log: err.log ?? `ERROR: sessionController.invalidateRefreshToken: ${err}`,
       status: err.status ?? 400,
-      msg: err.msg ?? { error: 'An error occurred' },
+      msg: err?.msg ?? { error: 'An error occurred' },
     });
   }
 };

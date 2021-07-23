@@ -75,7 +75,7 @@ userController.getUser = async (req, res, next) => {
     return next({
       log: err.log ?? `ERROR: userController.getUser: ${err}`,
       status: err.status ?? 400,
-      msg: err.msg ?? { error: 'An error occurred!' },
+      msg: err?.msg ?? { error: 'An error occurred!' },
     });
   }
 };
@@ -101,7 +101,7 @@ userController.getUserCloset = async (req, res, next) => {
     return next({
       log: err.log ?? `ERROR: userController.getUserCloset: ${err}`,
       status: err.status ?? 400,
-      msg: err.msg ?? { error: 'An error occurred!' },
+      msg: err?.msg ?? { error: 'An error occurred!' },
     });
   }
 };
@@ -147,7 +147,7 @@ userController.insertClothingIntoUserCloset = async (req, res, next) => {
     return next({
       log: err.log ?? `ERROR: userController.insertClothingToUserCloset: ${err}`,
       status: err.status ?? 400,
-      msg: err.msg ?? { error: 'An error occurred!' },
+      msg: err?.msg ?? { error: 'An error occurred!' },
     });
   }
 };
