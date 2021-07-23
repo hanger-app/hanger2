@@ -13,19 +13,19 @@ userController.createUser = async (req, res, next) => {
     }
 
     const newUser = {
-      firstName: res.locals.userInfo.given_name,
-      lastName: res.locals.userInfo.family_name,
-      email: res.locals.userInfo.email,
+      firstName: res.locals?.userInfo?.given_name,
+      lastName: res.locals?.userInfo?.family_name,
+      email: res.locals?.userInfo?.email,
       zipcode: '99999',
-      oauthId: res.locals.userInfo.id,
+      oauthId: res.locals?.userInfo?.id,
     };
 
     for (const [key, value] of Object.entries(newUser)) {
       if (value === undefined) {
         throw {
-          log: `ERROR: userController.createUser: ${new TypeError(`${key} is undefined`)}`,
+          log: `ERROR: userController.createUser: ${new TypeError(`${key} is undefined. Check OAuth scopes`)}`,
           status: 400,
-          message: { error: `Please provide ${key}` },
+          message: { error: 'An error occurred!' },
         };
       }
     }
@@ -35,9 +35,9 @@ userController.createUser = async (req, res, next) => {
     return next();
   } catch (err) {
     return next({
-      log: err.log ?? `ERROR: userController.createUser: ${err}`,
-      status: err.status ?? 400,
-      message: err.message ?? { error: 'An error occurred!' },
+      log: err?.log ?? `ERROR: userController.createUser: ${err}`,
+      status: err?.status ?? 400,
+      message: err?.message ?? { error: 'An error occurred!' },
     });
   }
 };
