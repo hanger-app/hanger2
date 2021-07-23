@@ -22,61 +22,63 @@ describe('userController', () => {
     jest.clearAllMocks();
   });
 
-  test('createUser: User exists', async () => {
-    const UserExistsSpy = jest.spyOn(User, 'exists').mockResolvedValue(true);
+  describe('createUser', () => {
+    test('User exists', async () => {
+      const UserExistsSpy = jest.spyOn(User, 'exists').mockResolvedValue(true);
 
-    await userController.createUser(req, res, nextMock);
+      await userController.createUser(req, res, nextMock);
 
-    expect(UserExistsSpy).toHaveBeenCalledTimes(1);
-    expect(nextMock).toHaveBeenCalled();
-    expect(nextMock).toHaveReturnedWith(undefined);
-  });
+      expect(UserExistsSpy).toHaveBeenCalledTimes(1);
+      expect(nextMock).toHaveBeenCalled();
+      expect(nextMock).toHaveReturnedWith(undefined);
+    });
 
-  test('createUser: User does not exist', async () => {
-    const UserExistsSpy = jest.spyOn(User, 'exists').mockResolvedValue(false);
-    const UserCreateSpy = jest.spyOn(User, 'create').mockResolvedValue();
+    test('User does not exist', async () => {
+      const UserExistsSpy = jest.spyOn(User, 'exists').mockResolvedValue(false);
+      const UserCreateSpy = jest.spyOn(User, 'create').mockResolvedValue();
 
-    await userController.createUser(req, res, nextMock);
+      await userController.createUser(req, res, nextMock);
 
-    expect(UserExistsSpy).toHaveBeenCalledTimes(1);
-    expect(UserCreateSpy).toHaveBeenCalledTimes(1);
-    expect(nextMock).toHaveBeenCalled();
-    expect(nextMock).toHaveReturnedWith(undefined);
-  });
+      expect(UserExistsSpy).toHaveBeenCalledTimes(1);
+      expect(UserCreateSpy).toHaveBeenCalledTimes(1);
+      expect(nextMock).toHaveBeenCalled();
+      expect(nextMock).toHaveReturnedWith(undefined);
+    });
 
-  test('createUser: call next with error arg if User.exists rejects', async () => {
-    const UserExistsSpy = jest.spyOn(User, 'exists').mockRejectedValue();
-    const UserCreateSpy = jest.spyOn(User, 'create').mockResolvedValue();
+    test('call next with error arg if User.exists rejects', async () => {
+      const UserExistsSpy = jest.spyOn(User, 'exists').mockRejectedValue();
+      const UserCreateSpy = jest.spyOn(User, 'create').mockResolvedValue();
 
-    await userController.createUser(req, res, nextMock);
+      await userController.createUser(req, res, nextMock);
 
-    expect(UserExistsSpy).toHaveBeenCalledTimes(1);
-    expect(UserCreateSpy).toHaveBeenCalledTimes(0);
-    expect(nextMock).toHaveBeenCalled();
-    expect(nextMock).not.toHaveReturnedWith(undefined);
-  });
+      expect(UserExistsSpy).toHaveBeenCalledTimes(1);
+      expect(UserCreateSpy).toHaveBeenCalledTimes(0);
+      expect(nextMock).toHaveBeenCalled();
+      expect(nextMock).not.toHaveReturnedWith(undefined);
+    });
 
-  test('createUser: call next with error arg if User.create rejects', async () => {
-    const UserExistsSpy = jest.spyOn(User, 'exists').mockResolvedValue(false);
-    const UserCreateSpy = jest.spyOn(User, 'create').mockRejectedValue();
+    test('call next with error arg if User.create rejects', async () => {
+      const UserExistsSpy = jest.spyOn(User, 'exists').mockResolvedValue(false);
+      const UserCreateSpy = jest.spyOn(User, 'create').mockRejectedValue();
 
-    await userController.createUser(req, res, nextMock);
+      await userController.createUser(req, res, nextMock);
 
-    expect(UserExistsSpy).toHaveBeenCalledTimes(1);
-    expect(UserCreateSpy).toHaveBeenCalledTimes(1);
-    expect(nextMock).toHaveBeenCalled();
-    expect(nextMock).not.toHaveReturnedWith(undefined);
-  });
+      expect(UserExistsSpy).toHaveBeenCalledTimes(1);
+      expect(UserCreateSpy).toHaveBeenCalledTimes(1);
+      expect(nextMock).toHaveBeenCalled();
+      expect(nextMock).not.toHaveReturnedWith(undefined);
+    });
 
-  test('createUser: call next with error arg if userInfo is malformed', async () => {
-    const UserExistsSpy = jest.spyOn(User, 'exists').mockResolvedValue(false);
-    const UserCreateSpy = jest.spyOn(User, 'create').mockResolvedValue();
+    test('call next with error arg if userInfo is malformed', async () => {
+      const UserExistsSpy = jest.spyOn(User, 'exists').mockResolvedValue(false);
+      const UserCreateSpy = jest.spyOn(User, 'create').mockResolvedValue();
 
-    await userController.createUser(req, { locals: { userInfo: {} } }, nextMock);
+      await userController.createUser(req, { locals: { userInfo: {} } }, nextMock);
 
-    expect(UserExistsSpy).toHaveBeenCalledTimes(1);
-    expect(UserCreateSpy).toHaveBeenCalledTimes(0);
-    expect(nextMock).toHaveBeenCalled();
-    expect(nextMock).not.toHaveReturnedWith(undefined);
+      expect(UserExistsSpy).toHaveBeenCalledTimes(1);
+      expect(UserCreateSpy).toHaveBeenCalledTimes(0);
+      expect(nextMock).toHaveBeenCalled();
+      expect(nextMock).not.toHaveReturnedWith(undefined);
+    });
   });
 });
