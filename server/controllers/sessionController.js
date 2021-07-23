@@ -30,7 +30,7 @@ sessionController.callback = async (req, res, next) => {
     return next({
       log: `ERROR: sessionController.callback: ${err.response}`,
       status: err.response?.status ?? 500,
-      message: { error: 'There was an error' },
+      msg: { error: 'There was an error' },
     });
   }
 };
@@ -52,7 +52,7 @@ sessionController.startSession = async (req, res, next) => {
     return next({
       log: `ERROR: sessionController.startSession: ${err}`,
       status: 500,
-      message: { error: 'There was an error' },
+      msg: { error: 'There was an error' },
     });
   }
 };
@@ -65,7 +65,7 @@ sessionController.refresh = (req, res, next) => {
       throw {
         log: `ERROR: sessionController.refresh:${new RangeError('No refresh token found in request cookies')}`,
         status: 401,
-        message: { error: 'Unauthorized' },
+        msg: { error: 'Unauthorized' },
       };
     }
 
@@ -73,7 +73,7 @@ sessionController.refresh = (req, res, next) => {
       throw {
         log: `ERROR: sessionController.refresh: ${new RangeError('Supplied refresh token does not exist')}`,
         status: 403,
-        message: { error: 'Forbidden' },
+        msg: { error: 'Forbidden' },
       };
     }
 
@@ -82,7 +82,7 @@ sessionController.refresh = (req, res, next) => {
         return next({
           log: `ERROR: sessionController.refresh: jwt.verify: ${err}`,
           status: 403,
-          message: { error: 'Forbidden' },
+          msg: { error: 'Forbidden' },
         });
       }
 
@@ -95,7 +95,7 @@ sessionController.refresh = (req, res, next) => {
     return next({
       log: err.log ?? `ERROR: sessionController.refresh: ${err}`,
       status: err.status ?? 400,
-      message: err.message ?? { error: 'An error occurred' },
+      msg: err.msg ?? { error: 'An error occurred' },
     });
   }
 };
@@ -110,7 +110,7 @@ sessionController.invalidateRefreshToken = (req, res, next) => {
           'Supplied refresh token does not exist'
         )}`,
         status: 204,
-        message: { error: '' },
+        msg: { error: '' },
       };
     }
 
@@ -119,7 +119,7 @@ sessionController.invalidateRefreshToken = (req, res, next) => {
     return next({
       log: err.log ?? `ERROR: sessionController.invalidateRefreshToken: ${err}`,
       status: err.status ?? 400,
-      message: err.message ?? { error: 'An error occurred' },
+      msg: err.msg ?? { error: 'An error occurred' },
     });
   }
 };
@@ -147,13 +147,13 @@ sessionController.verify = (req, res, next) => {
         return next({
           log: `ERROR: sessionController.verify: jwt.verify: ${err.name}`,
           status: 403,
-          message: { error: 'token expired' },
+          msg: { error: 'token expired' },
         });
       }
       return next({
         log: `ERROR: sessionController.verify: jwt.verify: ${err}`,
         status: 403,
-        message: { error: 'Forbidden' },
+        msg: { error: 'Forbidden' },
       });
     }
     return next();

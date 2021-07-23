@@ -25,7 +25,7 @@ userController.createUser = async (req, res, next) => {
         throw {
           log: `ERROR: userController.createUser: ${new TypeError(`${key} is undefined. Check OAuth scopes`)}`,
           status: 400,
-          message: { error: 'An error occurred!' },
+          msg: { error: 'An error occurred!' },
         };
       }
     }
@@ -37,7 +37,7 @@ userController.createUser = async (req, res, next) => {
     return next({
       log: err?.log ?? `ERROR: userController.createUser: ${err}`,
       status: err?.status ?? 400,
-      message: err?.message ?? { error: 'An error occurred!' },
+      msg: err?.msg ?? { error: 'An error occurred!' },
     });
   }
 };
@@ -54,7 +54,7 @@ userController.getUser = async (req, res, next) => {
       throw {
         log: `ERROR: userController.createUser: ${new RangeError('ID was not provided')}`,
         status: 400,
-        message: { error: 'Please provide a valid id' },
+        msg: { error: 'Please provide a valid id' },
       };
     }
 
@@ -64,7 +64,7 @@ userController.getUser = async (req, res, next) => {
       throw {
         log: `ERROR: userController.getUser: ${new RangeError('ID does not exist')}`,
         status: 404,
-        message: { error: 'The provided id does not exist.' },
+        msg: { error: 'The provided id does not exist.' },
       };
     }
 
@@ -75,7 +75,7 @@ userController.getUser = async (req, res, next) => {
     return next({
       log: err.log ?? `ERROR: userController.getUser: ${err}`,
       status: err.status ?? 400,
-      message: err.message ?? { error: 'An error occurred!' },
+      msg: err.msg ?? { error: 'An error occurred!' },
     });
   }
 };
@@ -90,7 +90,7 @@ userController.getUserCloset = async (req, res, next) => {
       throw {
         log: `ERROR: userController.getUserCloset: ${new RangeError('User ID does not exist ')}`,
         status: 400,
-        message: { error: 'There was a problem retrieving the closet' },
+        msg: { error: 'There was a problem retrieving the closet' },
       };
     }
 
@@ -101,7 +101,7 @@ userController.getUserCloset = async (req, res, next) => {
     return next({
       log: err.log ?? `ERROR: userController.getUserCloset: ${err}`,
       status: err.status ?? 400,
-      message: err.message ?? { error: 'An error occurred!' },
+      msg: err.msg ?? { error: 'An error occurred!' },
     });
   }
 };
@@ -112,7 +112,7 @@ userController.insertClothingIntoUserCloset = async (req, res, next) => {
       throw {
         log: `ERROR: userController.insertClothingToUserCloset: ${new TypeError('Invalid id')}`,
         status: 400,
-        message: { error: 'Please provide a valid id' },
+        msg: { error: 'Please provide a valid id' },
       };
     }
 
@@ -147,7 +147,7 @@ userController.insertClothingIntoUserCloset = async (req, res, next) => {
     return next({
       log: err.log ?? `ERROR: userController.insertClothingToUserCloset: ${err}`,
       status: err.status ?? 400,
-      message: err.message ?? { error: 'An error occurred!' },
+      msg: err.msg ?? { error: 'An error occurred!' },
     });
   }
 };
