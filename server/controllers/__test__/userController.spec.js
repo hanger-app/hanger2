@@ -31,7 +31,7 @@ describe('userController', () => {
           email: 'fizz@buzz.io',
           zipcode: '99999',
         },
-        foundUser: userInstance,
+        foundUser: { ...userInstance, closet: [] },
       },
     };
   });
@@ -40,6 +40,10 @@ describe('userController', () => {
     jest.clearAllMocks();
     req = null;
     res = null;
+  });
+
+  afterAll(() => {
+    console.log(userInstance);
   });
 
   describe('createUser', () => {
@@ -170,6 +174,7 @@ describe('userController', () => {
     test('successfully insert into user closet', async () => {
       const ClothingPrototypeSpy = jest.spyOn(Clothing.prototype, 'save').mockResolvedValue(new Clothing());
       const UserPrototypeSpy = jest.spyOn(User.prototype, 'save').mockResolvedValue(new User());
+      res.locals.foundUser = new User();
 
       await userController.insertClothingIntoUserCloset(req, res, nextMock);
 
