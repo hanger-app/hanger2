@@ -17,7 +17,7 @@ const AuthProvider = ({ children }) => {
     if (userCookie) {
       setUser(userCookie);
     }
-  }, [user]);
+  }, []);
 
   return <UserContext.Provider value={{ user, logout }}>{children}</UserContext.Provider>;
 };
