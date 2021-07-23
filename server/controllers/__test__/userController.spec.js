@@ -23,7 +23,7 @@ describe('userController', () => {
   });
 
   describe('createUser', () => {
-    test('User exists', async () => {
+    test('skip user creation if user already exists', async () => {
       const UserExistsSpy = jest.spyOn(User, 'exists').mockResolvedValue(true);
 
       await userController.createUser(req, res, nextMock);
@@ -33,7 +33,7 @@ describe('userController', () => {
       expect(nextMock).toHaveReturnedWith(undefined);
     });
 
-    test('User does not exist', async () => {
+    test('successfully create a new user', async () => {
       const UserExistsSpy = jest.spyOn(User, 'exists').mockResolvedValue(false);
       const UserCreateSpy = jest.spyOn(User, 'create').mockResolvedValue();
 
