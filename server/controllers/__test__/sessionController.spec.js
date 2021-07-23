@@ -1,4 +1,4 @@
-const axios = require('axios');
+// const axios = require('axios');
 const sessionController = require('../sessionController.js');
 
 describe('sessionController', () => {
@@ -6,7 +6,7 @@ describe('sessionController', () => {
 
   let res;
 
-  const nextMock = jest.fn((input) => input);
+  // const nextMock = jest.fn((input) => input);
 
   const userInstance = {};
 
