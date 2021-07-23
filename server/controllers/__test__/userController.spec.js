@@ -170,7 +170,6 @@ describe('userController', () => {
     test('successfully insert into user closet', async () => {
       const ClothingPrototypeSpy = jest.spyOn(Clothing.prototype, 'save').mockResolvedValue(new Clothing());
       const UserPrototypeSpy = jest.spyOn(User.prototype, 'save').mockResolvedValue(new User());
-      res.locals.foundUser = new User();
 
       await userController.insertClothingIntoUserCloset(req, res, nextMock);
 
