@@ -2,13 +2,13 @@ const userController = require('../userController.js');
 const User = require('../../models/UserModel.js');
 
 describe('userController', () => {
-  const req = {
+  let req = {
     params: {
       id: '1234567890',
     },
   };
 
-  const res = {
+  let res = {
     locals: {
       userInfo: {
         id: '1234567890',
@@ -24,10 +24,24 @@ describe('userController', () => {
 
   afterEach(() => {
     jest.clearAllMocks();
-  });
 
-  afterAll(() => {
-    console.log(res);
+    req = {
+      params: {
+        id: '1234567890',
+      },
+    };
+
+    res = {
+      locals: {
+        userInfo: {
+          id: '1234567890',
+          given_name: 'foo',
+          family_name: 'bar',
+          email: 'fizz@buzz.io',
+          zipcode: '99999',
+        },
+      },
+    };
   });
 
   describe('createUser', () => {
@@ -91,8 +105,8 @@ describe('userController', () => {
   });
 
   describe('getUser', () => {
-    test('successfully gets user', async () => {
-      const UserFindOneSpy = jest.spyOn(User, 'findOne').mockResolvedValue(true);
+    xtest('successfully gets user', async () => {
+      const UserFindOneSpy = jest.spyOn(User, 'findOne').mockResolvedValue({ closet: [] });
 
       await userController.getUser(req, res, nextMock);
 
@@ -109,9 +123,42 @@ describe('userController', () => {
     });
 
     test("call next with error arg if can't find user", async () => {
-      const UserFindOneSpy = jest.spyOn(User, 'findOne').mockResolvedValue(false);
+      const UserFindOneSpy = jest.spyOn(User, 'findOne').mockResolvedValue(null);
 
       await userController.getUser(req, res, nextMock);
+
+      expect(UserFindOneSpy).toHaveBeenCalledTimes(1);
+      expect(nextMock).toHaveBeenCalled();
+      expect(nextMock).not.toHaveReturnedWith(undefined);
+    });
+  });
+
+  describe('getUserCloset', () => {
+    xtest('successfully gets user closet', async () => {
+      User.findOne.populate = jest.fn(() => Promise.resolve({ closet: [] }));
+      const UserFindOneSpy = jest.spyOn(User, 'findOne').mockResolvedValue(() => ({ populate: () => jest.fn() }));
+
+      await userController.getUserCloset(req, res, nextMock);
+
+      expect(UserFindOneSpy).toHaveBeenCalledTimes(1);
+      expect(nextMock).toHaveBeenCalled();
+      expect(nextMock).toHaveReturnedWith(undefined);
+    });
+
+    test('call next with error arg if id is missing from request parameters', async () => {
+      const UserFindOneSpy = jest.spyOn(User, 'findOne').mockResolvedValue(false);
+
+      await userController.getUserCloset({ params: { id: undefined } }, res, nextMock);
+
+      expect(UserFindOneSpy).toHaveBeenCalledTimes(1);
+      expect(nextMock).toHaveBeenCalled();
+      expect(nextMock).not.toHaveReturnedWith(undefined);
+    });
+
+    test('call next with error arg if cannot find a user closet', async () => {
+      const UserFindOneSpy = jest.spyOn(User, 'findOne').mockResolvedValue(false);
+
+      await userController.getUserCloset(req, res, nextMock);
 
       expect(UserFindOneSpy).toHaveBeenCalledTimes(1);
       expect(nextMock).toHaveBeenCalled();
