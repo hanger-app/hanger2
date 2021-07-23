@@ -2,7 +2,11 @@ const userController = require('../userController.js');
 const User = require('../../models/UserModel.js');
 
 describe('userController', () => {
-  const req = {};
+  const req = {
+    params: {
+      id: '1234567890',
+    },
+  };
 
   const res = {
     locals: {
@@ -20,6 +24,10 @@ describe('userController', () => {
 
   afterEach(() => {
     jest.clearAllMocks();
+  });
+
+  afterAll(() => {
+    console.log(res);
   });
 
   describe('createUser', () => {
@@ -82,5 +90,32 @@ describe('userController', () => {
     });
   });
 
-  describe('getUser', () => {});
+  describe('getUser', () => {
+    test('successfully gets user', async () => {
+      const UserFindOneSpy = jest.spyOn(User, 'findOne').mockResolvedValue(true);
+
+      await userController.getUser(req, res, nextMock);
+
+      expect(UserFindOneSpy).toHaveBeenCalledTimes(1);
+      expect(nextMock).toHaveBeenCalled();
+      expect(nextMock).toHaveReturnedWith(undefined);
+    });
+
+    test("call next with error arg if id doesn't exist", async () => {
+      await userController.getUser({ params: { id: undefined } }, res, nextMock);
+
+      expect(nextMock).toHaveBeenCalled();
+      expect(nextMock).not.toHaveReturnedWith(undefined);
+    });
+
+    test("call next with error arg if can't find user", async () => {
+      const UserFindOneSpy = jest.spyOn(User, 'findOne').mockResolvedValue(false);
+
+      await userController.getUser(req, res, nextMock);
+
+      expect(UserFindOneSpy).toHaveBeenCalledTimes(1);
+      expect(nextMock).toHaveBeenCalled();
+      expect(nextMock).not.toHaveReturnedWith(undefined);
+    });
+  });
 });
