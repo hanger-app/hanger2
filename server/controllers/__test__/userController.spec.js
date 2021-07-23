@@ -1,8 +1,13 @@
 const userController = require('../userController.js');
+const Clothing = require('../../models/ClothingModel.js');
 const User = require('../../models/UserModel.js');
 
 describe('userController', () => {
   let req = {
+    body: {
+      name: 'mock clothing name',
+      description: 'mock clothing description',
+    },
     params: {
       id: '1234567890',
     },
@@ -17,6 +22,7 @@ describe('userController', () => {
         email: 'fizz@buzz.io',
         zipcode: '99999',
       },
+      foundUser: new User(),
     },
   };
 
@@ -26,6 +32,10 @@ describe('userController', () => {
     jest.clearAllMocks();
 
     req = {
+      body: {
+        name: 'mock clothing name',
+        description: 'mock clothing description',
+      },
       params: {
         id: '1234567890',
       },
@@ -40,13 +50,16 @@ describe('userController', () => {
           email: 'fizz@buzz.io',
           zipcode: '99999',
         },
+        foundUser: {
+          closet: [],
+        },
       },
     };
   });
 
   describe('createUser', () => {
     test('skip user creation if user already exists', async () => {
-      const UserExistsSpy = jest.spyOn(User, 'exists').mockResolvedValue(true);
+      const UserExistsSpy = jest.spyOn(User, 'exists').mockResolvedValue(new User());
 
       await userController.createUser(req, res, nextMock);
 
@@ -57,7 +70,7 @@ describe('userController', () => {
 
     test('successfully create a new user', async () => {
       const UserExistsSpy = jest.spyOn(User, 'exists').mockResolvedValue(false);
-      const UserCreateSpy = jest.spyOn(User, 'create').mockResolvedValue();
+      const UserCreateSpy = jest.spyOn(User, 'create').mockResolvedValue(new User());
 
       await userController.createUser(req, res, nextMock);
 
@@ -68,8 +81,8 @@ describe('userController', () => {
     });
 
     test('call next with error arg if User.exists rejects', async () => {
-      const UserExistsSpy = jest.spyOn(User, 'exists').mockRejectedValue();
-      const UserCreateSpy = jest.spyOn(User, 'create').mockResolvedValue();
+      const UserExistsSpy = jest.spyOn(User, 'exists').mockRejectedValue(false);
+      const UserCreateSpy = jest.spyOn(User, 'create').mockResolvedValue(new User());
 
       await userController.createUser(req, res, nextMock);
 
@@ -81,7 +94,7 @@ describe('userController', () => {
 
     test('call next with error arg if User.create rejects', async () => {
       const UserExistsSpy = jest.spyOn(User, 'exists').mockResolvedValue(false);
-      const UserCreateSpy = jest.spyOn(User, 'create').mockRejectedValue();
+      const UserCreateSpy = jest.spyOn(User, 'create').mockRejectedValue(null);
 
       await userController.createUser(req, res, nextMock);
 
@@ -93,7 +106,7 @@ describe('userController', () => {
 
     test('call next with error arg if userInfo is malformed', async () => {
       const UserExistsSpy = jest.spyOn(User, 'exists').mockResolvedValue(false);
-      const UserCreateSpy = jest.spyOn(User, 'create').mockResolvedValue();
+      const UserCreateSpy = jest.spyOn(User, 'create').mockResolvedValue(new User());
 
       await userController.createUser(req, { locals: { userInfo: {} } }, nextMock);
 
@@ -105,6 +118,7 @@ describe('userController', () => {
   });
 
   describe('getUser', () => {
+    // not working, have to figure out a way to create a .populate spy
     xtest('successfully gets user', async () => {
       const UserFindOneSpy = jest.spyOn(User, 'findOne').mockResolvedValue({ closet: [] });
 
@@ -123,7 +137,7 @@ describe('userController', () => {
     });
 
     test("call next with error arg if can't find user", async () => {
-      const UserFindOneSpy = jest.spyOn(User, 'findOne').mockResolvedValue(null);
+      const UserFindOneSpy = jest.spyOn(User, 'findOne').mockResolvedValue(new User());
 
       await userController.getUser(req, res, nextMock);
 
@@ -134,19 +148,20 @@ describe('userController', () => {
   });
 
   describe('getUserCloset', () => {
+    // not working; have to figure out how to create a .populate spy
     xtest('successfully gets user closet', async () => {
       User.findOne.populate = jest.fn(() => Promise.resolve({ closet: [] }));
       const UserFindOneSpy = jest.spyOn(User, 'findOne').mockResolvedValue(() => ({ populate: () => jest.fn() }));
 
       await userController.getUserCloset(req, res, nextMock);
 
-      expect(UserFindOneSpy).toHaveBeenCalledTimes(1);
+      expect(UserFindOneSpy.findOne.populate).toHaveBeenCalledTimes(1);
       expect(nextMock).toHaveBeenCalled();
       expect(nextMock).toHaveReturnedWith(undefined);
     });
 
     test('call next with error arg if id is missing from request parameters', async () => {
-      const UserFindOneSpy = jest.spyOn(User, 'findOne').mockResolvedValue(false);
+      const UserFindOneSpy = jest.spyOn(User, 'findOne').mockResolvedValue(new User());
 
       await userController.getUserCloset({ params: { id: undefined } }, res, nextMock);
 
@@ -161,6 +176,29 @@ describe('userController', () => {
       await userController.getUserCloset(req, res, nextMock);
 
       expect(UserFindOneSpy).toHaveBeenCalledTimes(1);
+      expect(nextMock).toHaveBeenCalled();
+      expect(nextMock).not.toHaveReturnedWith(undefined);
+    });
+  });
+
+  describe('insertClothingIntoUserCloset', () => {
+    test('successfully insert into user closet', async () => {
+      const ClothingPrototypeSpy = jest.spyOn(Clothing.prototype, 'save').mockResolvedValue(new Clothing());
+      const UserPrototypeSpy = jest.spyOn(User.prototype, 'save').mockResolvedValue(new User());
+      res.locals.foundUser = new User();
+
+      await userController.insertClothingIntoUserCloset(req, res, nextMock);
+
+      expect(ClothingPrototypeSpy).toHaveBeenCalledTimes(1);
+      expect(UserPrototypeSpy).toHaveBeenCalledTimes(1);
+      expect(nextMock).toHaveBeenCalled();
+      expect(nextMock).toHaveReturnedWith(undefined);
+      expect(res.locals.updatedUser).not.toEqual(res.locals.foundUser);
+    });
+
+    test('call next with err arg if req.params.id is falsy/missing', async () => {
+      await userController.insertClothingIntoUserCloset({ params: { id: undefined } }, res, nextMock);
+
       expect(nextMock).toHaveBeenCalled();
       expect(nextMock).not.toHaveReturnedWith(undefined);
     });
