@@ -47,10 +47,6 @@ userController.getUser = async (req, res, next) => {
     const { id } = req.params;
 
     if (!id) {
-      throw new TypeError('ERROR: userController.getUser: invalid id');
-    }
-
-    if (!id) {
       throw {
         log: `ERROR: userController.createUser: ${new RangeError('ID was not provided')}`,
         status: 400,
