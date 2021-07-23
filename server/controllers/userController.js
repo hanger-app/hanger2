@@ -6,7 +6,7 @@ const userController = {};
 
 userController.createUser = async (req, res, next) => {
   try {
-    const isExistingUser = await User.exists({ oauthId: res.locals.userInfo.id });
+    const isExistingUser = await User.exists({ oauthId: res.locals?.userInfo?.id });
 
     if (isExistingUser) {
       return next();
