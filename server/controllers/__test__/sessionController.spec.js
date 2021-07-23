@@ -47,6 +47,7 @@ describe('sessionController', () => {
       await sessionController.login(req, res);
 
       expect(res.redirect).toHaveBeenCalledTimes(1);
+      expect(res.redirect).not.toHaveReturnedWith(undefined);
     });
   });
 });
