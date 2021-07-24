@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const LandingStyle = styled.div`
+export const LoginStyle = styled.div`
   max-width: 100%;
   display: flex;
   flex-direction: row;

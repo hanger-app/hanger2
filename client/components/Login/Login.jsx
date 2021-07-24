@@ -1,10 +1,10 @@
 import React from 'react';
 import GoogleButton from 'react-google-button';
-import { LandingStyle } from '../styles/LandingStyle';
+import { LoginStyle } from './LoginStyle';
 
-const Landing = () => {
+const Login = () => {
   return (
-    <LandingStyle>
+    <LoginStyle>
       <div className="coverBlock">
         <img
           className="logo"
@@ -21,8 +21,8 @@ const Landing = () => {
         </div>
         <br />
       </div>
-    </LandingStyle>
+    </LoginStyle>
   );
 };
 
-export default Landing;
+export default Login;
