@@ -5,6 +5,7 @@ const setupDatabase = async () => {
   const mongoConnection = mongoose.connect(process.env.MONGO_URI_TEST, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex: true,
   });
 
   return mongoConnection;
