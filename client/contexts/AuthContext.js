@@ -37,10 +37,13 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     setError(false);
     setIsLogoutLoading(false);
-    const userCookie = Cookies.getJSON('user');
-
-    if (userCookie) {
-      setUser(userCookie);
+    try {
+      const userCookie = Cookies.getJSON('user');
+      if (userCookie) {
+        setUser(userCookie);
+      }
+    } catch (err) {
+      setError(err);
     }
   }, []);
 
