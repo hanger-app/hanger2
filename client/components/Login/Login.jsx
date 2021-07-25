@@ -3,6 +3,9 @@ import GoogleButton from 'react-google-button';
 import { LoginStyle } from './LoginStyle';
 
 const Login = () => {
+  const authenticate = () => {
+    fetch('/api/sessions/login');
+  };
   return (
     <LoginStyle>
       <div className="coverBlock">
@@ -14,9 +17,7 @@ const Login = () => {
         <div className="logBlock">
           <h1 className="subheading">A new way to clean your closet</h1>
           <div className="google">
-            {/* <a href="/auth/google"> */}
-            <GoogleButton type="dark" />
-            {/* </a> */}
+            <GoogleButton type="dark" onClick={authenticate} />
           </div>
         </div>
         <br />

@@ -1,6 +1,6 @@
 const axios = require('axios');
 const jwt = require('jsonwebtoken');
-const { GOOGLE_OAUTH_URL, GOOGLE_OAUTH_EXCHANGE_URL } = require('../util/googleOAuthConstants.js');
+const { GOOGLE_OAUTH_URL, GOOGLE_OAUTH_EXCHANGE_URL } = require('../util/googleOAuthConstants');
 const { ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET } = require('../util/jwtConstants.js');
 
 const sessionController = {};
@@ -9,6 +9,7 @@ const sessionController = {};
 const refreshTokens = new Set();
 
 sessionController.login = (req, res) => {
+  console.log(GOOGLE_OAUTH_URL);
   return res.redirect(GOOGLE_OAUTH_URL);
 };
 
