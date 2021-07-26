@@ -7,8 +7,8 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 const App = () => {
   return (
     <div>
-      <Nav />
       <Router>
+        <Nav />
         <Route exact path="/">
           <Login />
         </Route>

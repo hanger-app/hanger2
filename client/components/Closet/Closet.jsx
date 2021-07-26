@@ -11,11 +11,9 @@ const Closet = () => {
   } = useAuth();
 
   const [userInfo, setUserInfo] = useState([]);
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorEl, setAnchorEl] = useState(false);
 
   const { register, handleSubmit, error } = useForm();
-
-  const open = Boolean(anchorEl);
 
   useEffect(() => {
     fetch(`/api/users/${id}`)
@@ -24,7 +22,7 @@ const Closet = () => {
   }, [id]);
 
   const handleClose = () => {
-    setAnchorEl(null);
+    setAnchorEl(false);
   };
 
   const handleSave = (data) => {
@@ -80,7 +78,7 @@ const Closet = () => {
           Add Item
         </button>
         <Popover
-          open={open}
+          open={anchorEl}
           onClose={handleClose}
           anchorEl={anchorEl}
           anchorOrigin={{
