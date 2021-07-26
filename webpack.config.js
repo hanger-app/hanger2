@@ -42,6 +42,7 @@ module.exports = {
       '/assets': 'http://localhost:3000',
     },
     hot: true,
+    historyApiFallback: true,
   },
   devtool: isDevelopment ? 'eval-cheap-module-source-map' : false,
   optimization: {
