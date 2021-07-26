@@ -16,7 +16,6 @@ export const NavStyle = styled.div`
   }
   & .navBar {
     display: flex;
-    // max-height: 15vh;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;

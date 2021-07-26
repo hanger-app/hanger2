@@ -9,7 +9,6 @@ const sessionController = {};
 const refreshTokens = new Set();
 
 sessionController.login = (req, res) => {
-  console.log(GOOGLE_OAUTH_URL);
   return res.redirect(GOOGLE_OAUTH_URL);
 };
 

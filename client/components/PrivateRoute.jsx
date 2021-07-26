@@ -1,15 +1,15 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 const PrivateRoute = ({ children, ...rest }) => {
-  const context = useAuth();
+  const { user } = useAuth();
   return (
     <Route
       {...rest}
-      render={() => {
-        return context.user ? children : <Redirect to="/" />;
-      }}
+      render={({ location }) =>
+        user.authenticated ? children : <Redirect to={{ pathname: '/', state: { from: location } }} />
+      }
     />
   );
 };

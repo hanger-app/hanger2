@@ -11,10 +11,14 @@ export const LoginStyle = styled.div`
   margin: 0;
   object-fit: cover;
   vertical-align: baseline;
+  text-decoration: none;
   & img {
     filter: brightness(50%);
     max-width: 100%;
     height: auto;
+  }
+  & a {
+    text-decoration: none;
   }
   & .subheading {
     max-width: 15vw;
