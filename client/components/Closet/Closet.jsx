@@ -13,7 +13,7 @@ const Closet = () => {
   const [userInfo, setUserInfo] = useState([]);
   const [anchorEl, setAnchorEl] = useState(false);
 
-  const { register, handleSubmit, error } = useForm();
+  const { register, handleSubmit } = useForm();
 
   useEffect(() => {
     fetch(`/api/users/${id}`)
