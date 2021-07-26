@@ -19,7 +19,7 @@ const Login = () => {
               <GoogleButton type="dark" />
             </a>
           </div>
-          <Link to="closet">
+          <Link to="/closet">
             <button style={{ visibility: user?.authenticated ? 'visible' : 'hidden' }}>Enter Closet</button>
           </Link>
         </div>
