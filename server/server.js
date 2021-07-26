@@ -5,13 +5,11 @@ const helmet = require('helmet');
 
 const userRouter = require('./routes/userRouter.js');
 const sessionRouter = require('./routes/sessionRouter.js');
-
 const app = express();
 
 app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
-
 app.use('/assets', express.static(path.resolve(__dirname, '../client/assets')));
 
 app.use('/api/users', userRouter);

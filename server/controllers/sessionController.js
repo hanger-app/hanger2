@@ -1,6 +1,6 @@
 const axios = require('axios');
 const jwt = require('jsonwebtoken');
-const { GOOGLE_OAUTH_URL, GOOGLE_OAUTH_EXCHANGE_URL } = require('../util/googleOAuthConstants.js');
+const { GOOGLE_OAUTH_URL, GOOGLE_OAUTH_EXCHANGE_URL } = require('../util/googleOAuthConstants');
 const { ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET } = require('../util/jwtConstants.js');
 
 const sessionController = {};

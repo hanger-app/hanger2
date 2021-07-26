@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const LandingStyle = styled.div`
+export const LoginStyle = styled.div`
   max-width: 100%;
   display: flex;
   flex-direction: row;
@@ -11,10 +11,14 @@ export const LandingStyle = styled.div`
   margin: 0;
   object-fit: cover;
   vertical-align: baseline;
+  text-decoration: none;
   & img {
     filter: brightness(50%);
     max-width: 100%;
     height: auto;
+  }
+  & a {
+    text-decoration: none;
   }
   & .subheading {
     max-width: 15vw;
@@ -36,5 +40,16 @@ export const LandingStyle = styled.div`
   & .coverBlock {
     display: flex;
     flex-direction: row;
+  }
+
+  & .enter {
+    background-color: white;
+    height: 5vh;
+    border-radius: 18px;
+    border: none;
+    font-family: Roboto, sans-serif;
+  }
+  .enter:hover {
+    background-color: #e8a832;
   }
 `;
