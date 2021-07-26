@@ -4,7 +4,7 @@ import { LoginStyle } from './LoginStyle';
 import { useAuth } from '../../contexts/AuthContext';
 import { Link, Route } from 'react-router-dom';
 const Login = () => {
-  const { user } = useAuth();
+  const user = useAuth()?.user;
   // if (user?.authenticated === true) {
   //   return < Route path='/closet' />;
   // }
