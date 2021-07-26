@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 const PrivateRoute = ({ children, ...rest }) => {
-  const { user } = useAuth();
+  const user = useAuth()?.user;
   return (
     <Router>
       <Route

@@ -4,7 +4,7 @@ import { LoginStyle } from './LoginStyle';
 import { useAuth } from '../../contexts/AuthContext';
 import { Link } from 'react-router-dom';
 const Login = () => {
-  const { user } = useAuth();
+  const user = useAuth()?.user;
 
   return (
     <LoginStyle>
