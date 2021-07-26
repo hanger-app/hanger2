@@ -10,26 +10,19 @@ const app = express();
 app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
+
+if (process.env.NODE_ENV === 'production') {
+  app.use('/build', express.static(path.resolve(__dirname, '../build')));
+}
+
 app.use('/assets', express.static(path.resolve(__dirname, '../client/assets')));
 
 app.use('/api/users', userRouter);
 
 app.use('/api/sessions', sessionRouter);
 
-if (process.env.NODE_ENV === 'production') {
-  app.use('/build', express.static(path.resolve(__dirname, '../build')));
-
-  app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../build/index.html'));
-  });
-}
-
-app.use('/*', (req, res, next) => {
-  return next({
-    log: `ERROR: server.js: Resource '${req.originalUrl}' does not exist`,
-    status: 404,
-    msg: { error: 'Resource does not exist.' },
-  });
+app.use('*', (req, res) => {
+  return res.sendFile(path.resolve(__dirname, '../build/index.html'));
 });
 
 // eslint-disable-next-line no-unused-vars
