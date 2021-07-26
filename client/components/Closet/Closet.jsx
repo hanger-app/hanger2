@@ -6,13 +6,17 @@ const Closet = () => {
   const {
     user: { id },
   } = useAuth();
+
   const [userInfo, setUserInfo] = useState([]);
+
   useEffect(() => {
     fetch(`/api/users/${id}`)
-      .then((data) => data.json())
-      .then((data) => setUserInfo(data));
+      .then((res) => res.json())
+      .then((data) => {
+        setUserInfo(data);
+      });
   }, [id]);
-  console.log('userInfo: ', userInfo);
+
   return (
     <ClosetStyle>
       <div className="greetingBanner">
