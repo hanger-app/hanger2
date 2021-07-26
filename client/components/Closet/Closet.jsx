@@ -10,11 +10,6 @@ const Closet = () => {
     user: { id },
   } = useAuth();
 
-  const PopoverStyle = {
-    // backgroundColor: '#424242',
-    backgroundOpactity: '.5',
-  };
-
   const [userInfo, setUserInfo] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -32,7 +27,12 @@ const Closet = () => {
     setAnchorEl(null);
   };
 
-  const handleSave = (data) => console.log('Form Data: ', data);
+  const handleSave = (data) => {
+    handleClose();
+    console.log('Form Data: ', data);
+    /**There will be logic here to make a fetch to the backend with our form data
+     * as well as populate our closet with a new closetItem component */
+  };
 
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget);
@@ -79,24 +79,21 @@ const Closet = () => {
         <button type="button" onClick={handleClick}>
           Add Item
         </button>
-        <div style={{ backgroundColor: '#424242' }}>
-          <Popover
-            open={open}
-            onClose={handleClose}
-            anchorEl={anchorEl}
-            anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'left',
-            }}
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'left',
-            }}
-            style={PopoverStyle}
-          >
-            {itemForm}
-          </Popover>
-        </div>
+        <Popover
+          open={open}
+          onClose={handleClose}
+          anchorEl={anchorEl}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'left',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'left',
+          }}
+        >
+          {itemForm}
+        </Popover>
       </div>
     </ClosetStyle>
   );

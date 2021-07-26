@@ -2,12 +2,10 @@ import React from 'react';
 import GoogleButton from 'react-google-button';
 import { LoginStyle } from './LoginStyle';
 import { useAuth } from '../../contexts/AuthContext';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 const Login = () => {
   const { user } = useAuth();
-  // if (user?.authenticated === true) {
-  //   return < Route path='/closet' />;
-  // }
+
   return (
     <LoginStyle>
       <div className="coverBlock">
@@ -20,7 +18,9 @@ const Login = () => {
             </a>
           </div>
           <Link to="closet">
-            <button style={{ visibility: user?.authenticated ? 'visible' : 'hidden' }}>Enter Closet</button>
+            <button className="enter" style={{ visibility: user?.authenticated ? 'visible' : 'hidden' }}>
+              Enter Closet
+            </button>
           </Link>
         </div>
         <br />

@@ -41,4 +41,15 @@ export const LoginStyle = styled.div`
     display: flex;
     flex-direction: row;
   }
+
+  & .enter {
+    background-color: white;
+    height: 5vh;
+    border-radius: 18px;
+    border: none;
+    font-family: Roboto, sans-serif;
+  }
+  .enter:hover {
+    background-color: #e8a832;
+  }
 `;
