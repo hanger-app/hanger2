@@ -19,6 +19,9 @@ export const LoginStyle = styled.div`
   }
   & a {
     text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
   }
   & .subheading {
     max-width: 15vw;
