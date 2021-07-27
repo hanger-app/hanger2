@@ -7,7 +7,7 @@ const Closet = () => {
     user: { id },
   } = useAuth();
 
-  const [userInfo, setUserInfo] = useState([]);
+  const [userInfo, setUserInfo] = useState({});
 
   useEffect(() => {
     fetch(`/api/users/${id}`)
@@ -20,7 +20,7 @@ const Closet = () => {
   return (
     <ClosetStyle>
       <div className="greetingBanner">
-        {userInfo.closet ? <h1>Welcome, {userInfo.firstName}</h1> : <h1>Welcome back, {userInfo.firstName}</h1>}
+        <h1>Welcome, {userInfo.firstName}</h1>
         <h1>Your Closet </h1>
         <button>Add Item</button>
       </div>
