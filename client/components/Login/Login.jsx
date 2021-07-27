@@ -5,7 +5,7 @@ import { LoginStyle } from './LoginStyle';
 import { useAuth } from '../../contexts/AuthContext';
 
 const Login = () => {
-  const { user } = useAuth();
+  const auth = useAuth();
 
   return (
     <LoginStyle>
@@ -14,12 +14,12 @@ const Login = () => {
         <div className="logBlock">
           <h1 className="subheading">A new way to clean your closet</h1>
           <div className="google">
-            <a href="/api/sessions/login" style={{ display: user?.authenticated ? 'none' : 'visible' }}>
+            <a href="/api/sessions/login" style={{ display: auth?.user?.authenticated ? 'none' : 'visible' }}>
               <GoogleButton type="dark" />
             </a>
           </div>
           <Link to="/closet">
-            <button style={{ visibility: user?.authenticated ? 'visible' : 'hidden' }}>Enter Closet</button>
+            <button style={{ visibility: auth?.user?.authenticated ? 'visible' : 'hidden' }}>Enter Closet</button>
           </Link>
         </div>
         <br />
