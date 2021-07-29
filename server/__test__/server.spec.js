@@ -11,12 +11,9 @@ describe('loading express server', () => {
   });
 
   test('GET non-existent route', async () => {
-    const errorSpy = jest.spyOn(global.console, 'error').mockImplementation(() => jest.fn());
-
-    await request(app).get('/fizz/buzz/bazz').expect(404);
-    expect(errorSpy).toHaveBeenCalledTimes(1);
-
-    errorSpy.mockRestore();
+    await request(app)
+      .get('/fizz/buzz/bazz')
+      .expect('Content-Type', /text\/html/);
   });
 });
 

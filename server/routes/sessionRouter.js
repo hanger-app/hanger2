@@ -13,7 +13,7 @@ sessionRouter.get(
   sessionController.startSession,
   sessionController.createUserCookie,
   (req, res) => {
-    return res.sendStatus(200);
+    return res.redirect('/');
   }
 );
 

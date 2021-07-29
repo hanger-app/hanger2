@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const LandingStyle = styled.div`
+export const LoginStyle = styled.div`
   max-width: 100%;
   display: flex;
   flex-direction: row;
@@ -11,10 +11,17 @@ export const LandingStyle = styled.div`
   margin: 0;
   object-fit: cover;
   vertical-align: baseline;
+  text-decoration: none;
   & img {
     filter: brightness(50%);
     max-width: 100%;
     height: auto;
+  }
+  & a {
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
   }
   & .subheading {
     max-width: 15vw;
